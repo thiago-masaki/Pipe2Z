@@ -51,18 +51,12 @@ function Pipe2Z() {
 			 cat $lastcommandresult | tail -n $1 | head -1 |
 		    if [ "$2" == "" ];then
 			 cat
-			 #cat /tmp/.lastcommandresult | tail -n $1 | head -1; 
 		    elif [ "$2" == "l" ]; then
 			 awk '{print $NF}' 
-			 #cat /tmp/.lastcommandresult | tail -n $1 | head -1 | awk '{print $NF}' -
 		    elif [ "$2" == "f" ]; then
 			 awk '{print $1}' 
-			 #cat /tmp/.lastcommandresult | tail -n $1 | head -1 | awk '{print $1}' -
 		    else
 			 awk -v col="$2" '{print $col}'
-			 #col="$2";
-			 #cat /tmp/.lastcommandresult | tail -n $1 | head -1 | awk -v col="$col" '{print $col}' -
-			 #cat /tmp/.lastcommandresult | tail -n $1 | head -1 | awk -v col="$col" '{print $col}' "${@--}"
 		    fi
 		else	
 		    totallines=$(wc -l $lastcommandresult);  
@@ -70,8 +64,6 @@ function Pipe2Z() {
 		fi
 	else
 		if [ "$1" != "" ];then
-			#pipein=$(cat);
-			#cat $pipein | tee /tmp/.lastcommandresult 
 			cat | tee $lastcommandresult 
 		else
 			cat $* > $lastcommandresult 
